@@ -62,7 +62,7 @@ export default class UpdateProps extends Component {
         disabled={member === this.state.members}
         key={member}
         onClick={() => this.setState({ members: member })}
-        style={{textTransform: 'capitalize', marginLeft: 5, marginRight: 5}}
+        style={{textTransform: 'capitalize', marginLeft: 2, marginRight: 2}}
         >
         {member}
       </button>

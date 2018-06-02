@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import brianPic from '../img/brian.png'
 import damienPic from '../img/damien.png'
@@ -16,6 +16,7 @@ const PICTURES = {
 
 const PICTURES_KEY = Object.keys(PICTURES)
 
+// usar PureComponent para evitar el shouldComponentUpdate() - no olvidar importarlo arriba
 class Pictures extends Component {
 
   state = { members: PICTURES[this.props.member] }
@@ -25,11 +26,31 @@ class Pictures extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('mponentWillReceiveProps');
+    console.clear()
+    console.log('1.mponentWillReceiveProps');
     console.log(nextProps);
     this.setState({ members: PICTURES[nextProps.member]})
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.log('2.shouldComponentUpdate');
+    console.log(this.props.member, nextProps.member);
+    return this.props.member !== nextProps.member
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('3.componentWillUpdate', nextProps, nextState);
+    const img = document.querySelector('img')
+    console.log({ alt: img.alt });
+    img.animate([{
+      filter: 'blur(10px)'
+    },{
+      filter: 'blur(0px)'
+    }], {
+      duration: 300,
+      easing: 'ease'
+    })
+  }
 
   render() {
     console.log('-> render');
@@ -59,7 +80,7 @@ export default class UpdateProps extends Component {
     return (
       <button
         className='button'
-        disabled={member === this.state.members}
+        // disabled={member === this.state.members}
         key={member}
         onClick={() => this.setState({ members: member })}
         style={{textTransform: 'capitalize', marginLeft: 2, marginRight: 2}}

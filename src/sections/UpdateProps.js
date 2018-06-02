@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react' // Añadir PureComponent si queremos evitar la actualización automatica del componente el recibir nuevas props
 import PropTypes from 'prop-types'
 import brianPic from '../img/brian.png'
 import damienPic from '../img/damien.png'

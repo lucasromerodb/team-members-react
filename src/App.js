@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import ConditionalSection from './sections/Conditional'
+import ConditionalSection from './sections/Conditional'
 import UpdateProps from './sections/UpdateProps'
 
 class Counter extends Component {
@@ -50,6 +50,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ConditionalSection />
         { this.state.componentAvailable && <UpdateProps/>}
         <div>
           {this.state.componentAvailable && this._createMountUnmountButton('Desmontar Componente', false)}

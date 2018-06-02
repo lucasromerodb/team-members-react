@@ -1,21 +1,15 @@
 import React, { Component } from 'react'
 
-class LoginButton extends Component {
-  render() {
-    return <button onClick={this.props.action}>Login User</button>
-  }
-}
+const LoginButton = ({ action }) => (
+  <button onClick={action} className='button'>Login User</button>
+)
 
-class ComponentB extends Component {
-  render() {
-    return (
-      <div>
-        <h4>Welcome, User</h4>
-        <button onClick={this.props.action}>Log out</button>
-      </div>
-    )
-  }
-}
+const ComponentB = ({action}) => (
+  <div>
+    <h4>Welcome, User</h4>
+    <button onClick={action} className='button'>Log out</button>
+  </div>
+)
 
 export default class ConditionalSection extends Component {
   constructor(){

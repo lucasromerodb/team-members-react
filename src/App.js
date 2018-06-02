@@ -33,15 +33,33 @@ class CounterNumber extends Component {
 }
 
 class App extends Component {
+  state = { componentAvailable: true }
+
+  _createMountUnmountButton(text, boolean) {
+    return (
+      <button
+        className='button'
+        onClick={() => this.setState({ componentAvailable: boolean })}
+        style={{marginTop: 30}}
+      >
+        {text}
+      </button>
+    )
+  }
+
   render() {
     return (
       <div className="App">
-        <UpdateProps/>
+        { this.state.componentAvailable && <UpdateProps/>}
+        <div>
+          {this.state.componentAvailable && this._createMountUnmountButton('Desmontar Componente', false)}
+          {!this.state.componentAvailable && this._createMountUnmountButton('Montar Componente', true)}
+        </div>
         <img
           alt="Made with React"
           className='App-logo'
           src={logo}
-          style={{marginTop: 50}}
+          style={{marginTop: 20}}
           title="Made with React by Lucas Romero Di Benedetto"
           width={80}
         />
